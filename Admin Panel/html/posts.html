@@ -1,0 +1,89 @@
+{% embed 'links.html' %} {% endembed %}
+{% embed 'sidebar.html' %} {% endembed %}
+    	
+	<div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing mt0">
+	<div class="lg-col lg-col-12 sm-col-12 xs-col-12 md-col-12 ">
+	<div class="demo-options mdl-card mdl-color--indigo mdl-shadow--2dp">
+		<div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+	    	<svg fill="currentColor" width="200px" height="50px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+	      		<use xlink:href="#piechart" mask="url(#piemask)" />
+	      		<text x="0.5" y="0.5" font-family="Roboto" font-size="0.7" fill="#fff" text-anchor="middle" dy="0.1">{{totalPosts}} Posts</text>
+	    	</svg>
+	  </div>
+	</div>
+	</div>
+	</div>
+	<div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+	<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+	<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+		{% if page != 1 %}
+		<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored left mr3 mdl-button--icon" href="./posts.php?page={{page - 1}}&per-page={{perPage}}"><i class="material-icons">navigate_before</i> </a>
+		{% endif %}
+		{% for onepage in pages %}
+			{{onepage|raw}}
+		{% endfor %}
+		<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored right mdl-button--icon" href="./posts.php?page={{page + 1}}&per-page={{perPage}}"><i class="material-icons">navigate_next</i></a>
+	</div>
+	</div>
+	<div class="clearfic"></div>
+    <div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+	
+		<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+		<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+			{% for post in posts %}
+			<div class="mdl-card mdl-shadow--2dp mb3">
+			  <div class="mdl-card__title pt0 pb0">
+			  	<div class="socialapp-list-action mdl-list">
+				  <div class="mdl-list__item">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-avatar">person</i>
+				      <span>{{post.username}} - post#{{post.id}} </span>
+				    </span>
+				    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">watch_later</i></a> {{post.creation|time_diff}}
+				  </div>
+				</div>
+			  </div>
+			  {% if post.type != 0 %}
+			  <div class="mdl-card__media">
+			  {% if post.type == 1 %}
+			  <img src="{{post.content}}" class="fit" alt="">
+			  {% elseif post.type ==2 %}
+
+				<video width="100%" class="fit" controls="">
+					<source src="{{post.content}}" type="video/mp4">
+				</video>		
+			  {% endif %}
+			  </div>
+			  {% endif %}
+			  <div class="mdl-card__supporting-text">
+			    {{post.description}}
+			  </div>
+			  <div class="mdl-card__actions mdl-card--border">
+			  	<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right" href="./post.php?id={{post.id}}">
+			      <i class="material-icons">edit</i> Edit
+			    </a>
+			    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right delete-btn" data-action="post" data-id="{{post.id}}">
+			      <i class="material-icons">delete_forever</i> Delete
+			    </button>
+			  </div>
+			</div>
+			{% endfor %}
+		</div>
+    </div>
+    <div class="clearfix"></div>
+	<div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+		<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+		<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+			{% if page != 1 %}
+			<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored left mr3 mdl-button--icon" href="./posts.php?page={{page - 1}}&per-page={{perPage}}"><i class="material-icons">navigate_before</i> </a>
+			{% endif %}
+			{% for onepage in pages %}
+				{{onepage|raw}}
+			{% endfor %}
+			{% if page > pages|length %}
+			<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored right mdl-button--icon" href="./posts.php?page={{page + 1}}&per-page={{perPage}}"><i class="material-icons">navigate_next</i></a>
+			{% endif %}
+		</div>
+	</div>
+
+{% embed 'footer.html' %} {% endembed %}

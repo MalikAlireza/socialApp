@@ -1,0 +1,17 @@
+  
+    </div>
+  </main>  
+  {% if view != 'login' and view != 'settings' %} 
+  	</div> 
+  {% endif %}
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+  <script>
+  	var base_path = '{{paths.base_path}}';
+  	var processing = false ;
+  	var jstoken ='{{token}}';
+  </script>
+  <script src="{{paths.base_path}}js/jquery.toast.js"></script>
+  <script src="{{paths.base_path}}js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+{% embed 'links.html' %} {% endembed %}
+{% embed 'sidebar.html' %} {% endembed %}
+  
+  {% if posts %}
+
+   <table class="table table-striped table-hover ">
+    <thead>
+      {% for post in posts  %}
+        {% if loop.first %}
+        <tr >
+          {% for key, value in post %}
+            {% if key != 'is_Share' and key != 'content' and key != 'audience'%}
+            <th>{{key}}</th>
+            {% endif %}
+          {% endfor %}
+          <th>Action</th>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </thead>
+    <tbody>
+    	{% for post in posts  %}
+        <tr >
+    		{% for key,value in post %}
+  	      {% if key != 'is_Share' and key != 'content' and key != 'audience' %}
+            <td>{{value}}</td>
+          {% endif %}
+      	{% endfor %}
+            <td><a href="./post.php?id={{post.id}}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">View Post</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    {% elseif request.search_field == 'post' %}
+    <div class="mdl-card mt4  mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  mdl-layout--large-screen-only">
+    <section class="empty">
+      <div class="empty-icon">
+        <i class="icon icon-message"></i>
+      </div>
+      <h4 class="empty-title">Nothing found ...</h4>
+      <p class="empty-subtitle">Click the button to browse all {{attribute(request,'search-field')}}s.</p>
+      <div class="empty-action">
+        <a class="btn btn-primary" href="./{{attribute(request,'search-field')}}s.php">All {{attribute(request,'search-field')|capitalize}}s .</a>
+      </div>
+
+    </section>
+  {% endif %}
+  {% if users %}
+   <table class="table table-striped table-hover ">
+    <thead>
+      {% for user in users  %}
+        {% if loop.first %}
+        <tr >
+          {% for key, value in user %}
+            {% if key != 'is_Share' and key != 'content' and key != 'audience'%}
+            <th>{{key}}</th>
+            {% endif %}
+          {% endfor %}
+          <th>Action</th>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for user in users  %}
+        <tr >
+        {% for key,value in user %}
+          {% if key != 'is_Share' and key != 'content' and key != 'audience' %}
+            <td>{{value}}</td>
+          {% endif %}
+        {% endfor %}
+            <td><a href="./profile.php?id={{user.id}}" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">View User</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    {% elseif request.search_field == 'user'  %}
+    <div class="mdl-card mt4  mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  mdl-layout--large-screen-only">
+    <section class="empty">
+      <div class="empty-icon">
+        <i class="icon icon-message"></i>
+      </div>
+      <h4 class="empty-title">Nothing found ...</h4>
+      <p class="empty-subtitle">Click the button to browse all Users.</p>
+      <div class="empty-action">
+        <a class="btn btn-primary" href="./users.php">Go</a>
+      </div>
+    </section>
+  {% endif %}
+  {% if reports %}
+   <table class="table table-striped table-hover ">
+    <thead>
+      {% for report in reports  %}
+        {% if loop.first %}
+        <tr >
+          {% for key, value in report %}
+            {% if key != 'is_Share' and key != 'content' and key != 'audience'%}
+            <th>{{key}}</th>
+            {% endif %}
+          {% endfor %}
+          <th>Action</th>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for report in reports  %}
+        <tr >
+        {% for key,value in report %}
+          {% if key != 'is_Share' and key != 'content' and key != 'audience' %}
+            <td>{{value}}</td>
+          {% endif %}
+        {% endfor %}
+            <td><a href="#" data-id="{{report.id}}" data-action="report" class="mdl-button delete-btn mdl-js-button mdl-button--raised mdl-button--colored">Delete Report</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    {% elseif request.search_field == 'report' %}
+    <div class="mdl-card mt4  mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  mdl-layout--large-screen-only">
+    <section class="empty">
+      <div class="empty-icon">
+        <i class="icon icon-message"></i>
+      </div>
+      <h4 class="empty-title">Nothing found ...</h4>
+      <p class="empty-subtitle">Click the button to browse all Reports.</p>
+      <div class="empty-action">
+        <a class="btn btn-primary" href="./reports.php">Go</a>
+      </div>
+    </section>
+  {% endif %}
+  {% if messages %}
+   <table class="table table-striped table-hover ">
+    <thead>
+      {% for message in messages  %}
+        {% if loop.first %}
+        <tr >
+          {% for key, value in message %}
+            {% if key != 'is_Share' and key != 'content' and key != 'audience'%}
+            <th>{{key}}</th>
+            {% endif %}
+          {% endfor %}
+          <th>Action</th>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </thead>
+    <tbody>
+      {% for message in messages  %}
+        <tr >
+        {% for key,value in message %}
+          {% if key != 'is_Share' and key != 'content' and key != 'audience' %}
+            <td>{{value}}</td>
+          {% endif %}
+        {% endfor %}
+            <td><a href="#" class="mdl-button delete-btn mdl-js-button mdl-button--raised mdl-button--colored" data-action="message" data-id="{{message.id}}">Delete Message</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    {% elseif request.search_field == 'message'  %}
+    <div class="mdl-card mt4  mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  mdl-layout--large-screen-only">
+    <section class="empty">
+      <div class="empty-icon">
+        <i class="icon icon-message"></i>
+      </div>
+      <h4 class="empty-title">Nothing found ...</h4>
+      <p class="empty-subtitle">Click the button to browse all Messages.</p>
+      <div class="empty-action">
+        <a class="btn btn-primary" href="./messages.php">Go</a>
+      </div>
+    </section>
+  {% endif %}
+  
+{% embed 'footer.html' %} {% endembed %}

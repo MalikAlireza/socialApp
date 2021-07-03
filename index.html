@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <head lang="en">
+      <meta http-equiv="content-type" content="text/html;charset=utf-8">
+      <title>SocialApp Documentation
+      </title>
+      <!-- Framework CSS -->
+      <link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+      <link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+      <!--[if lt IE 8]>
+<link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection">
+<![endif]-->
+      <link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+      <style type="text/css" media="screen">
+        p, table, hr, .box {
+          margin-bottom:25px;
+        }
+        .box p {
+          margin-bottom:10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h3 class="center alt">&ldquo;SocialApp&rdquo; Documentation by &ldquo;InnovativeDeveloper&rdquo; v1.0
+        </h3>
+        <hr>
+        <h1 class="center">&ldquo;SocialApp&rdquo;
+        </h1>
+        <div class="borderTop">
+          <div class="span-6 colborder info prepend-1">
+            <p class="prepend-top">
+              <strong>
+                Created: 5/30/2017
+                <br>
+                By: InnovativeDeveloper
+                <br>
+                Email:
+                <a href="mailto:Technoengineering@hotmail.co.uk">Technoengineering@hotmail.co.uk
+                </a>
+              </strong>
+            </p>
+          </div>
+          <!-- end div .span-6 -->
+          <div class="span-12 last">
+            <p class="prepend-top append-0">Thank you for purchasing my app. If you have any questions that are beyond the scope of this help file, please feel free to email via my envato contact form
+              <a href="https://codecanyon.net/user/innovativedeveloper">here
+              </a>. Thanks so much!
+            </p>
+          </div>
+        </div>
+        <!-- end div .borderTop -->
+        <hr>
+        <h2 id="toc" class="alt">Table of Contents
+        </h2>
+        <ol class="alpha">
+          <li>
+            <a href="#webserver">Setting up web server
+            </a>
+          </li>
+          <li>
+            <a href="#adminpanel">Setting up admin panel
+            </a>
+          </li>
+          <li>
+            <a href="#appconfig">Setting up app configuration
+            </a>
+          </li>
+          <li>
+            <a href="#fcmsetup">Setting up FCM (Firebase Cloud Messaging)
+            </a>
+          </li>
+          <li>
+            <a href="#libraries">Usage of libraries
+            </a>
+            <em class="quiet small">(Libraries used in app and web server)
+            </em>
+          </li>
+          <li>
+            <a href="#mysql">MySQL Queries
+            </a>
+          </li>
+          <li>
+            <a href="#faq">Frequently Asked Questions (FAQ)
+            </a>
+          </li>
+          <li>
+            <a href="#licenses">Licenses
+            </a>
+          </li>
+        </ol>
+        <hr>
+        <h3 id="webserver">
+          <strong>A) Setting up web server
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>Setting up a web server is just like placing web contents on a web server. You've to copy the web server folder from project directory and place it on your web server. You should set certain attributes on your web server to avoid leakage of your server files. After adding files, you should make changes to your config.php file which is located inside
+          <b>/include/
+          </b> folder.
+        </p>
+        <img src="assets/images/config_code.png" alt="Configuration" />
+        <p>This is the half configuration file data which needs to be changed before you set your app up. You should change
+          <b>DB_USERNAME, DB_PASSWORD, DB_HOST and DB_NAME
+          </b> with your database username, password, name and database host. If you're hosting database on the same machine then use localhost as the default host of database.
+        </p>
+        <p>As for the
+          <b>HOST
+          </b> and
+          <b>PROFILE_HOST
+          </b> replace it with your machine host (ip address). Make sure to replace
+          <'your-hostip-address'> in
+          <b>PROFILE_HOST
+          </b> instead of whole link as it is used to load profile pictures from the server.
+        </p>
+        <p>Now you've to add your FCM (Firebase Cloud Messaging) server key on variable FCM by replacing "
+          <'fcm-id'>". Your server configuration is updated and server is working now. Now follow next steps to get the app working.
+        </p>
+        <hr>
+        <h3 id="adminpanel">
+          <strong>B) Setting up admin panel
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>Setting up an admin panel is just like setting up a web server. You just have to place admin panel files on your web server folder. After placing the files, you've to execute some database queries to make the admin panel work and for login credentials.
+        You can find database file inside <b>/Admin Panel/database files</b> inside project folder. You've to import the database file or either execute the queries on your database. After executing queries, at last, we've to change configuration. For this you've to edit configuration file inside <b>/core/db_config.php</b>. </p>
+        <img src="assets/images/config_admin_code.png" alt="Admin Panel Configuration" />
+        <p>This is the configuration file for admin panel to work with the social app. You should change <b>user, pass, name, env</b>. user and pass is for database credentials and <b>'name'</b> is for database name same as on config file. You've to provide the same credentials as you gave on config.php file for database connection.</p>
+          <p><b>'env'</b> is for changing the property of admin panel. If it's for demo then make it 0 or if it is for production make it 1.</p>
+          <p>That's all. If you encounter any issue on this, be sure to contact me.</p>
+        <h3 id="appconfig">
+          <strong>B) Setting up app configuration
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>After setting up server configuration and connecting the database with it. You now need to setup the app and set its configuration to connect with the server. The app configuration is so simply and you only need to do two things. First thing, you've to add
+          <b>google-services.json
+          </b> file inside the app folder which will make the notification and messaging work. You can view on how to do this below.
+        </p>
+        <p>Second thing is setting up the configuration according to server configurations so that app can connect on it. After building your project, goto
+          <b>config.java
+          </b> file which is located inside
+          <b>App > src > main > java > config > config.php
+          </b>. The file will look something like this:
+        </p>
+        <img src="assets/images/config_code_app.png" alt="Configuration App" />
+        <p>The configuration file on the app is pretty much already setup and now you only need to change
+          <b>BASE_URI
+          </b> with your host ip address or change the whole
+          <b>BASE_URI
+          </b> according to your web server link point to index.php of this app server.
+        </p>
+        <p>
+          <b>If you encounter error like "404 Not found" while accessing the server link, it means that your server is pretty much working and there's no issue on it.
+          </b>
+        <p>
+        <hr>
+        <h3 id="fcmsetup">
+          <strong>C) Setting up FCM (Firebase Cloud Messaging)
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>Firebase Cloud Messaging (FCM) is used for:
+        </p>
+        <ol>
+          <li>Push Notifications
+          </li>
+          <li>Messages
+          </li>
+          <li>Deal with certain background syncing
+          </li>
+        </ol>
+        <p>You need to have a google account to setup FCM. After creating a google account, goto
+          <a href="https://console.firebase.google.com/">Firebase Console
+          </a> and click the
+          <b>Create New Project
+          </b> button.
+        </p>
+        <img src="assets/images/fcm_create_project.png" alt="FCM New Project" />
+        <p>Name your project and click the
+          <b>Create Project
+          </b> button.
+        </p>
+        <p>Now click Add Firebase to your Android app button and enter your app package name
+          <em>(default is: innovativedeveloper.com.socialapp)
+          </em> and click the Add App button. Follow the instructions on-screen to move the downloaded
+          <b>google-services.json
+          </b> file into your app.
+          <em>(instructions also given above)
+          </em> Click the Continue button. Now retrieve the server api key which is important to be placed in config.php file on server-side. You can do this by clicking the overflow button on your project and clicking the Manage item. Select the Cloud Messaging tab and note the server key or directly paste it on
+          <b>config.php
+          </b> file in server.
+          <em>(instructions are also given
+            <a href="#webserver">here
+            </a>)
+          </em>
+        </p>
+        <hr>
+        <h3 id="libraries">
+          <strong>D) Usage of libraries
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>These are the following libraries used in this app for certain features:
+        </p>
+        <ol>
+          <li>
+            <b>de.hdodenhof:circleimageview
+            </b>: It is used for round images and profile views.
+          </li>
+          <li>
+            <b>com.squareup.picasso
+            </b>: It is used to load images, snapshots and uploading images.
+          </li>
+          <li>
+            <b>'com.github.danylovolokh:hashtag-helper
+            </b>: It is used for hashtag feature within the app.
+          </li>
+          <li>
+            <b>com.klinkerapps:link_builder
+            </b>: It is used to build links within a textview for double profile links.
+          </li>
+          <li>
+            <b>com.balysv:material-ripple
+            </b>: Material ripple is used for ripple effects for buttons and controls to provide good ripple effect.
+          </li>
+          <li>
+            <b>jp.wasabeef:blurry
+            </b>: It is used to add blur background on profile view.
+          </li>
+          <li>
+            <b>com.rockerhieu.emojicon
+            </b>: For emoticons.
+          </li>
+        </ol>
+        <h3 id="mysql">
+          <strong>E) MySQL Queries
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>Create a database according to your desired app name and import database file from database folder which is included in this project directory and restore that database on your server-side.
+        </p>
+        <h3 id="faq">
+          <strong>F) Frequently Asked Questions (FAQ)
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <div>
+          <strong>Q) Does this app support video sharing?
+          </strong>
+        </div>
+        <div>
+          A) Yes.
+        </div>
+        <div>
+          &nbsp;
+        </div>
+        <div>
+          <strong>Q) Can I edit the code and add my own features?
+          </strong>
+        </div>
+        <div>
+          A) Yes. You can edit the code with your own and can publish the app.
+        </div>
+        <div>
+          &nbsp;
+        </div>
+        <div>
+          <strong>Q) I am not able to upload large files (i.e videos, photos)?
+          </strong>
+        </div>
+        <div>
+          A) You've to view your php settings using
+          <b>phpinfo()
+          </b> snippet. Search for upload_max_filesize and post_max_size and check whether they're set at what you want to be the upload size of files. If you want to increase it and allow more upload size, then change your php settings according to your web host settings files and replace these two settings in it and restart your host.
+        </div>
+        <div>
+          &nbsp;
+        </div>
+        <div>
+          <strong>Q) Can I request for customization?
+          </strong>
+        </div>
+        <div>
+          A) You can request for customization from author via email or comment section but it'd cost you.
+        </div>
+        <div>
+          &nbsp;
+        </div>
+        <div>
+          <strong>Q) Can I ask for bug fixes and other support needed to run this app?
+          </strong>
+        </div>
+        <div>
+          A) Yes you can. Feel free to contact me on my personal email and I&#39;ll catch you up as soon as possible for me.
+        </div>
+        <div>
+          &nbsp;
+        </div>
+        <div>
+          <strong>Q) Do I need a veSocialApp Documentationry fast server to run this app smooth?
+          </strong>
+        </div>
+        <div>
+          A) Most likely YES.
+        </div>
+        <div>
+          &nbsp;
+        </div>
+        <hr>
+        <h3 id="licenses">
+          <strong>G) Licenses
+          </strong> -
+          <a href="#toc">top
+          </a>
+        </h3>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Application Icon, and other icons inside of it is licensed under&nbsp;
+            <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/" style="vertical-align: baseline; font-family: Arial, Helvetica, sans-serif; border: 0px none; outline: 0px; padding: 0px; margin: 0px; color: rgb(59, 89, 152); text-decoration: none; font-size: 15.2px; line-height: 22.8px;" target="_blank">CC Attribution-Noncommercial-No Derivate 4.0
+            </a> &
+            <a href="http://file000.flaticon.com/downloads/license/license.pdf">Flaticon Basic License
+            </a>.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">The Slim Framework is licensed under the MIT license. See&nbsp;
+            <a href="https://github.com/slimphp/Slim/blob/3.x/LICENSE.md" style="box-sizing: border-box; color: rgb(64, 120, 192); text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">License File
+            </a>
+            <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">&nbsp;for more information.
+            </span>
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">
+            <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Hdodenhof CircularImageView&nbsp;
+            </span>
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Square Picasso&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Android Volley&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Hashtag Helper&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Link Builder&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Material Ripple&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &qu`ot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Blurry&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <p>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Emojicon&nbsp;
+          </span>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">is licensed under&nbsp;
+          </span>
+          <a href="http://www.apache.org/licenses/LICENSE-2.0.html" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">Apache Version 2.0
+          </a>
+          <span style="color: rgb(51, 51, 51); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 16px; line-height: 24px;">.
+          </span>
+        </p>
+        <hr>
+        <p>Once again, thank you so much for purchasing this app. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you need advanced support like installation of web server and app, then you may contact me via email for more information but it would cost you. Customization of this app is also available on request.
+        </p>
+        <p class="append-bottom alt large">
+          <strong>InnovativeDeveloper
+          </strong>
+        </p>
+        <p>
+          <a href="#toc">Go To Table of Contents
+          </a>
+        </p>
+        <hr class="space">
+      </div>
+      <!-- end div .container -->
+    </body>
+    </html>
+  </body>
+</html>

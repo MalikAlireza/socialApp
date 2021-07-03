@@ -1,0 +1,108 @@
+{% embed 'links.html' %} {% endembed %}
+<form action="" method="post" id="loginform">
+  <div class="mdl-grid">
+  		<div class="mdl-cell mdl-cell--4-col"></div>
+	  	<div class="mdl-cell mdl-cell--4-col">
+      <div class="socialapp-card-wide mdl-card mdl-shadow--2dp mx-auto mt4 p2" style="max-width: 300px;">
+        
+        <div class="mdl-card__supporting-text">
+          <header class="socialapp-drawer-header">
+            <img src="images/socialapp-80.png" class="socialapp-avatar">
+            <div class="socialapp-avatar-dropdown">
+              <div class="mdl-layout-spacer"></div>
+              <h4 class="modal-title" id="myModalLabel">Admin Area</h4>            
+            </div>
+        </header>
+          <div class="modal" id="log-modal">
+          <div class="modal-overlay"></div>
+          <div class="modal-container">
+            <div class="modal-header center">
+                  
+            </div>
+            <div class="modal-body">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input type="text" name="username" class="mdl-textfield__input validation" id="log-username" autocomplete="off">
+                      <label class="mdl-textfield__label" for="log-username">Username</label>
+                    </div>
+                    {% if Errors %}
+                      {% for error in Errors %}
+                            {% if error.field == 'username' %}
+                            <li > 
+                              <a href="">
+                                <label class="error mdl-color-text--red" id="error-username_field">{{ error.message }}</label>
+                              </a>
+                            </li>
+                            {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                      <br>
+                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
+                      <input type="password" name="password" class="mdl-textfield__input validation" id="log-password" autocomplete="off" >
+                     
+                      <label class="mdl-textfield__label" for="log-password">Password</label>
+                    </div>
+                    {% if Errors %}
+                      {% for error in Errors %}
+                            {% if error.field == 'password' %}
+                            <li> 
+                             <a href=""><label class="error mdl-color-text--red" id="error-username_field">{{ error.message }}</label></a>
+                            </li>
+                            {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                      <br>
+                    <div class="mdl-layout-spacer"></div> 
+                    <div class="field mt2 mb2 left">
+                        <label class="mdl-switch col-2 mdl-js-switch mdl-js-ripple-effect" for="log-remember">
+                          <input type="checkbox" id="log-remember"  name="remember" class="mdl-switch__input" checked>
+                          <span class="mdl-switch__label"></span>
+                        </label>
+                    </div>
+                    <label for="log-remember" class="pt2 ml2 left">Remember me</label>
+                    <div class="clearfix"></div>
+                    <div class="mdl-layout-spacer"></div> 
+                  
+
+              <div class="clearfix"></div>
+             
+            </div>
+            
+            <div class="modal-footer mt2">
+            <input type="hidden" name="token" class="form-control" id="token" value="{{token}}" >
+              
+
+                  <!-- <span class="right pr2 pl2 pt1">/</span>
+                                  <a href="{{paths.base_path}}/register.php" class="mdl-button mdl-js-button right pr2">Register</a>  -->
+
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          </div>
+        
+        </div>
+        <div class="mdl-card__actions ">
+          <!-- <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Get Started
+          </a> -->
+          <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored btn-block right" id="login-btn" value="Log in">
+        </div>
+        {% if Errors %}
+          {% for error in Errors %}
+                {% if error.field == 'token' %}
+                <div class="mdl-card__actions mdl-card--border center">
+                  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--red" href="./login.php">
+                    {{error.message}}
+                  </a> 
+                </div>
+                {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+         
+		  </div>
+	  <div class="mdl-cell mdl-cell--4-col"></div>
+  	
+  </div>
+  </form>
+{% embed 'footer.html' %} {% endembed %}

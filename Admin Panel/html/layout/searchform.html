@@ -1,0 +1,53 @@
+	<form action="./find.php" method="post">
+	<div class="hide">
+	<input type="hidden" name="token" value="{{token}}">	
+		<div class="left ml2 mt2 mb2 mr2 mr4 pt1  mdl-color-text--indigo">
+			find : 
+		</div>
+		<div class="left ml0 mt2 mb2 mr2 pt1">
+			<label for="switch-1">A post</label>
+		</div>
+		<div class="left ml0 mt2 mb2 mr4 pt1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effec" for="switch-1">
+			  <input type="radio" id="switch-1" class="mdl-radio__button" name="search-field" value="post" {% if view == 'posts' %} checked {% endif %}>
+			  <span class="mdl-radio__label"></span>
+			</label>
+		</div>
+		<div class="left ml0 mt2 mb2 mr2 pt1">
+			<label for="switch-2">A user</label>	
+		</div>
+		<div class="left ml0 mt2 mb2 mr4 pt1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effec" for="switch-2">
+			  <input type="radio" id="switch-2" class="mdl-radio__button" name="search-field" value="user" {% if view == 'users' %} checked {% endif %}>
+			  <span class="mdl-radio__label"></span>
+			</label>
+		</div>
+		<div class="left ml0 mt2 mb2 mr2 pt1">
+			<label for="switch-4">A message</label>
+		</div>
+		<div class="left ml0 mt2 mb2 mr4 pt1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effec" for="switch-4">
+			  <input type="radio" id="switch-4" class="mdl-radio__button" name="search-field" value="message" {% if view == 'messages' %} checked {% endif %}>
+			  <span class="mdl-radio__label"></span>
+			</label>
+		</div>
+		<div class="left ml0 mt2 mb2 mr2 pt1">
+			<label for="switch-3">An report</label>
+		</div>
+		<div class="left ml0 mt2 mb2 mr4 pt1">
+			<label class="mdl-radio mdl-js-radio mdl-js-ripple-effec" for="switch-3">
+			  <input type="radio" id="switch-3" class="mdl-radio__button" name="search-field" value="report" {% if view == 'reports' %} checked {% endif %}>
+			  <span class="mdl-radio__label"></span>
+			</label>
+		</div>
+		</div>
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable right mr2">
+		      <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+		        <i class="material-icons">search</i>
+		      </label>
+		      <div class="mdl-textfield__expandable-holder">
+		        <input type="text" class="mdl-textfield__input" name="q" type="text" id="search">
+		        <label class="mdl-textfield__label" for="search">Enter your query...</label>
+		      </div>
+		</div>
+	</form>

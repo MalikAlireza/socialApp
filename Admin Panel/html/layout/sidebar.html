@@ -1,0 +1,60 @@
+<div class="socialapp-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+        <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%"></div>
+  <header class="socialapp-header mdl-layout__header"> 
+  	<div class="mdl-layout__header-row">
+    
+    <div class="mdl-layout-spacer"></div>
+
+    {% if view == 'posts' or view == 'reports' or view == 'messages' or view == 'users' %}
+      {% embed 'searchform.html' %} {% endembed %}
+    {% endif %}
+
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" id="hdrbtn">  {{user.username}}
+      <i class="material-icons">more_vert</i>
+    </button>
+    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+    {% if user.username != 'demouser' %}
+      <li class="mdl-menu__item p0"><a href="./settings.php" class="pl2 pr2 block">Change Password</a></li>
+    {% endif %}
+      <li class="mdl-menu__item p0"><a href="./logout.php" class="pl2 pr2 block">Log out</a></li>
+    </ul>
+  	</div>
+  </header>
+	<div class="socialapp-drawer mdl-layout__drawer ">
+  	<header class="socialapp-drawer-header">
+    <img src="images/socialapp-80.png" class="socialapp-avatar">
+    <div class="socialapp-avatar-dropdown">
+      <span>SocialApp</span>
+      <div class="mdl-layout-spacer"></div>            
+    </div>
+  	</header>
+  	<nav class="socialapp-navigation mdl-navigation ">
+			<a class="mdl-navigation__link" href="./"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>General</a>
+			<a class="mdl-navigation__link" href="./posts.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Posts</a>
+			<a class="mdl-navigation__link" href="./users.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Users</a>
+			<a class="mdl-navigation__link" href="./reports.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Reports</a>
+			<a class="mdl-navigation__link" href="./messages.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Messages</a>
+			<div class="mdl-layout-spacer"></div>
+			<a class="mdl-navigation__link" href="https://codecanyon.net/item/socialapp-full-android-application/20119222/comments" target="blank"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span> Support </a>
+  	</nav>
+	</div>
+        
+  <main class="mdl-layout__content ">
+    <div class="mdl-grid socialapp-content">
+
+  <div class="toast" id="toast">
+      <button class="btn btn-clear float-right" id="toast-closer"></button>
+        Warning! Enabled demo version mode! The changes you've made will not be saved.
+  </div>
+    <ul class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="./">
+      Home
+    </a>
+  </li>
+  <li class="breadcrumb-item">
+    {{view}}
+  </li>
+</ul>
+    

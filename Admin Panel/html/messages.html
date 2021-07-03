@@ -1,0 +1,77 @@
+{% embed 'links.html' %} {% endembed %}
+{% embed 'sidebar.html' %} {% endembed %}
+
+	<div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+	<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+	<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+	<div class="demo-options mdl-card mdl-color--indigo mdl-shadow--2dp">
+		<div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+	    	<svg fill="currentColor" width="200px" height="50px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--12-col mdl-cell--12-col-desktop">
+	      		<use xlink:href="#piechart" mask="url(#piemask)" />
+	      		<text x="0.5" y="0.5" font-family="Roboto" font-size="0.7" fill="#fff" text-anchor="middle" dy="0.1">{{totalMessages}} Messages</text>
+	    	</svg>
+	  </div>
+	</div>
+	</div>
+	</div>
+	<div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+	<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+	<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+		{% if page != 1 %}
+		<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored left mr3 mdl-button--icon" href="./messages.php?page={{page - 1}}&per-page={{perPage}}"><i class="material-icons">navigate_before</i> </a>
+		{% endif %}
+		{% for onepage in pages %}
+			{{onepage|raw}}
+		{% endfor %}
+		<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored right mdl-button--icon" href="./messages.php?page={{page + 1}}&per-page={{perPage}}"><i class="material-icons">navigate_next</i></a>
+	</div>
+	</div>
+	<div class="clearfic"></div>
+    <div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+	
+		<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+		<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+			{% for message in messages %}
+			<div class="mdl-card mdl-shadow--2dp mb3">
+			  <div class="mdl-card__title pt0 pb0">
+			  	<div class="socialapp-list-action mdl-list">
+				  <div class="mdl-list__item pb0">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-avatar">person</i>
+				      <span >{{message.sender_username}}</span>
+				    </span> 
+				  </div>
+				</div>
+			  </div>
+			  <div class="mdl-card__supporting-text ml4  pt3 pb3 pl3">
+			    {{message.message}}
+			  </div>
+			  <div class="mdl-card__supporting-text mdl-color-text--blue-grey-100 ml4 pl3">
+			    {{message.creation|time_diff}}
+			  </div>
+			  <div class="mdl-card__actions mdl-card--border">
+			    <button class="mdl-button delete-btn mdl-button--colored mdl-js-button mdl-js-ripple-effect right" data-action ="message" data-id="{{message.id}}">
+			      <i class="material-icons">delete_forever</i> Delete
+			    </button>
+			  </div>
+			</div>
+			{% endfor %}
+		</div>
+    </div>
+	<div class="clearfix"></div>
+	<div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+		<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+		<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+			{% if page != 1 %}
+			<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored left mr3 mdl-button--icon" href="./messages.php?page={{page - 1}}&per-page={{perPage}}"><i class="material-icons">navigate_before</i> </a>
+			{% endif %}
+			{% for onepage in pages %}
+				{{onepage|raw}}
+			{% endfor %}
+			{% if page > pages|length %}
+			<a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored right mdl-button--icon" href="./messages.php?page={{page + 1}}&per-page={{perPage}}"><i class="material-icons">navigate_next</i></a>
+			{% endif %}
+		</div>
+	</div>
+     
+{% embed 'footer.html' %} {% endembed %}

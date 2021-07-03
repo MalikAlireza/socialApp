@@ -1,0 +1,90 @@
+{% embed 'links.html' %} {% endembed %}
+{% embed 'sidebar.html' %} {% endembed %}
+	<div class="clearfix"></div>
+    <div class="socialapp-cards mdl-cell mdl-cell--12-col  mdl-grid mdl-grid--no-spacing">
+		<div class="lg-col lg-col-3 xs-hide sm-hide"></div>
+		<div class="lg-col lg-col-6 sm-col-12 xs-col-12 md-col-6">
+		{% if post %}
+			<div class="mdl-card mdl-shadow--2dp mb3">
+			  <div class="mdl-card__title pt0 pb0">
+			  	<div class="socialapp-list-action mdl-list">
+				  <div class="mdl-list__item">
+				    <span class="mdl-list__item-primary-content">
+				      <i class="material-icons mdl-list__item-avatar">person</i>
+				      <span>{{post.username}} - post#{{post.id}} </span>
+				    </span>
+				    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">watch_later</i></a> {{post.creation|time_diff}}
+				  </div>
+				</div>
+			  </div>
+			  {% if post.type != 0 %}
+			  <div class="mdl-card__media">
+			  {% if post.type == 1 %}
+			  <img src="{{post.content}}" class="fit" alt="">
+			  {% elseif post.type ==2 %}
+
+				<video width="100%" class="fit" controls="">
+					<source src="{{post.content}}" type="video/mp4">
+				</video>		
+			  {% endif %}
+			  </div>
+			  {% endif %}
+			  <div class="mdl-card__supporting-text">
+			    {{post.description}}
+			  </div>
+			  <div class="mdl-card__actions mdl-card--border">
+			  	  <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right delete-btn" data-action="post" data-id="{{post.id}}">
+			      <i class="material-icons">delete_forever</i> Delete
+			    </button>
+			  </div>
+			</div>
+			<form action="" method="post">
+			<input type="hidden" name="token" value="{{token}}">
+			<div class="mdl-card mdl-shadow--2dp mb3 mdl-color--blue-grey-50">
+					  <div class="mdl-card__title pt0 pb0 mdl-color--white">
+					  	<div class="socialapp-list-action mdl-list">
+						  <div class="mdl-list__item">
+						    <span class="mdl-list__item-primary-content">
+						      <span>Edit Post Info</span>
+						    </span>
+						    <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">edit</i></a>
+						  </div>
+						</div>
+					  </div>
+					  <div class="mdl-card__supporting-text" style="width: 100%">
+					    
+					    	{% for key,value in post %}
+						    	{% if key != 'username' and key != 'profilePhoto' %}
+								    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%">
+								    	<input class="mdl-textfield__input" name="mdl-textfield__input--{{key}}" type="text" id="mdl-textfield__input--{{key}}" value="{{value}}">
+								    	<label class="mdl-textfield__label" for="mdl-textfield__input--{{key}}">{{key}}</label>
+								  	</div>
+								{% endif %}
+						    {% endfor %}
+						  
+						
+					  </div>
+					  <div class="mdl-card__actions mdl-card--border mdl-color--white">
+					    <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color-text--white right" value="Update Info">
+					  </div>
+			</div>
+			</form>
+		{% else %}
+			<div class="mdl-card mt4  mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop  mdl-layout--large-screen-only">
+		      <section class="empty">
+		        <div class="empty-icon">
+		          <i class="icon icon-message"></i>
+		        </div>
+		        <h4 class="empty-title">404! Nothing found ...</h4>
+		        <p class="empty-subtitle">Click the button to browse all Posts.</p>
+		        <div class="empty-action">
+		          <a class="btn btn-primary" href="./posts.php">Go</a>
+		        </div>
+
+		      </section>
+		    </div>
+		{% endif %}
+		</div>
+    </div>
+    <div class="clearfix"></div>  
+{% embed 'footer.html' %} {% endembed %}
